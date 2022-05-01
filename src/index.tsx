@@ -1,19 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+//@ts-nocheck
+import React from "react";
+import * as ReactDOMClient from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import {StateContextProvider} from "./StateContext";
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const container = document.getElementById("root");
+const root = ReactDOMClient.createRoot(container);
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <StateContextProvider>
+        <App/>
+    </StateContextProvider>
+);
+/*
+import React from "react";
+//@ts-ignore
+import * as ReactDOMClient from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import {StateContextProvider} from "./contexts/StateContext";
+
+const container = document.getElementById("root");
+const root = ReactDOMClient.createRoot(container);
+
+root.render(
+    <StateContextProvider>
+        <App/>
+    </StateContextProvider>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ */

@@ -4,4 +4,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+
+.restart{
+    margin-top: 2rem;
+    font-size: 1rem;
+    padding: 1rem;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.restart:hover{
+    cursor: pointer;
 }

@@ -7,6 +7,7 @@
   justify-content: center;
   box-sizing: border-box;
   cursor: crosshair;
+  animation: fadeIn 1s;
 }
 .cell:nth-child(1) {
   border-top: none;
@@ -35,6 +36,18 @@
 .cell:nth-child(9) {
   border-bottom: none;
   border-right: none;
+}
+.cell:hover {
+  background-color: #181818;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /*# sourceMappingURL=Cell.css.map */

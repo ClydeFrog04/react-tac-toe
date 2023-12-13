@@ -8,6 +8,8 @@
     box-sizing: border-box;
     cursor: crosshair;
 
+    animation: fadeIn 1s;
+
     &:nth-child(1){
         border-top: none;
         border-left: none;
@@ -35,5 +37,18 @@
     &:nth-child(9){
         border-bottom: none;
         border-right: none;
+    }
+
+    &:hover{
+        background-color: #181818;
+    }
+}
+
+@keyframes fadeIn {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
     }
 }

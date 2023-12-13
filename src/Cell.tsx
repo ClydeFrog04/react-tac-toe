@@ -20,22 +20,33 @@ const Cell = (props: CellProps) => {
         }
         return true;
     };
+    // const isWinner = () => {
+    //     if (localBoard[0][0] === localBoard[1][1] && localBoard[1][1] === localBoard[2][2] && localBoard[0][0] !== "")
+    //         return true;
+    //     else if (localBoard[2][0] === localBoard[1][1] && localBoard[1][1] === localBoard[0][2] && localBoard[2][0] !== "")
+    //         return true;
+    //     else if (localBoard[0][0] === localBoard[1][0] && localBoard[1][0] === localBoard[2][0] && localBoard[0][0] !== "")
+    //         return true;
+    //     else if (localBoard[0][1] === localBoard[1][1] && localBoard[1][1] === localBoard[2][1] && localBoard[0][1] !== "")
+    //         return true;
+    //     else if (localBoard[0][2] === localBoard[1][2] && localBoard[1][2] === localBoard[2][2] && localBoard[0][2] !== "")
+    //         return true;
+    //     else if (localBoard[0][0] === localBoard[0][1] && localBoard[0][1] === localBoard[0][2] && localBoard[0][0] !== "")
+    //         return true;
+    //     else if (localBoard[1][0] === localBoard[1][1] && localBoard[1][1] === localBoard[1][2] && localBoard[1][0] !== "")
+    //         return true;
+    //     else return localBoard[2][0] === localBoard[2][1] && localBoard[2][1] === localBoard[2][2] && localBoard[2][0] !== "";
+    // };
     const isWinner = () => {
-        if (localBoard[0][0] === localBoard[1][1] && localBoard[1][1] === localBoard[2][2] && localBoard[0][0] !== "")
-            return true;
-        else if (localBoard[2][0] === localBoard[1][1] && localBoard[1][1] === localBoard[0][2] && localBoard[2][0] !== "")
-            return true;
-        else if (localBoard[0][0] === localBoard[1][0] && localBoard[1][0] === localBoard[2][0] && localBoard[0][0] !== "")
-            return true;
-        else if (localBoard[0][1] === localBoard[1][1] && localBoard[1][1] === localBoard[2][1] && localBoard[0][1] !== "")
-            return true;
-        else if (localBoard[0][2] === localBoard[1][2] && localBoard[1][2] === localBoard[2][2] && localBoard[0][2] !== "")
-            return true;
-        else if (localBoard[0][0] === localBoard[0][1] && localBoard[0][1] === localBoard[0][2] && localBoard[0][0] !== "")
-            return true;
-        else if (localBoard[1][0] === localBoard[1][1] && localBoard[1][1] === localBoard[1][2] && localBoard[1][0] !== "")
-            return true;
-        else return localBoard[2][0] === localBoard[2][1] && localBoard[2][1] === localBoard[2][2] && localBoard[2][0] !== "";
+        return(
+            (localBoard[0][0] === localBoard[1][1] && localBoard[1][1] === localBoard[2][2] && localBoard[0][0] !== "") ||
+            (localBoard[2][0] === localBoard[1][1] && localBoard[1][1] === localBoard[0][2] && localBoard[2][0] !== "") ||
+            (localBoard[0][0] === localBoard[1][0] && localBoard[1][0] === localBoard[2][0] && localBoard[0][0] !== "") ||
+            (localBoard[0][1] === localBoard[1][1] && localBoard[1][1] === localBoard[2][1] && localBoard[0][1] !== "") ||
+            (localBoard[0][2] === localBoard[1][2] && localBoard[1][2] === localBoard[2][2] && localBoard[0][2] !== "") ||
+            (localBoard[0][0] === localBoard[0][1] && localBoard[0][1] === localBoard[0][2] && localBoard[0][0] !== "") ||
+            (localBoard[1][0] === localBoard[1][1] && localBoard[1][1] === localBoard[1][2] && localBoard[1][0] !== "") ||
+            (localBoard[2][0] === localBoard[2][1] && localBoard[2][1] === localBoard[2][2] && localBoard[2][0] !== ""));
     };
 
 

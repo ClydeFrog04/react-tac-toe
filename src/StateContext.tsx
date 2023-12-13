@@ -6,9 +6,6 @@ interface stateProps {
 
 //define our default state
 const defaultState = {
-    name: "",
-    setName: () => {
-    },
     board: [
         ["", "", ""],
         ["", "", ""],
@@ -22,20 +19,19 @@ const defaultState = {
     isGameOver: false,
     setIsGameOver: () => {
 
-    }
-
+    },
+    resetGame:  () => {}
 };
 
 //interface is used so the provider knows what to expect. This allows type safety later one when consuming our context
 interface IStateContext {
-    name: string;
-    setName: Dispatch<SetStateAction<string>>;
     board: string[][];
     setBoard: Dispatch<SetStateAction<string[][]>>;
     isXTurn: boolean;
     setIsXTurn: Dispatch<SetStateAction<boolean>>;
     isGameOver: boolean;
     setIsGameOver: Dispatch<SetStateAction<boolean>>;
+    resetGame:  () => void;
 }
 
 //the actual context object
@@ -43,11 +39,21 @@ export const StateContext = createContext<IStateContext>(defaultState);
 
 //and finally the provider for the context
 export const StateContextProvider: React.FC = (props: stateProps) => {
-    const [name, setName] = useState(defaultState.name);
     const [board, setBoard] = useState(defaultState.board);
     const [isXTurn, setIsXTurn] = useState(defaultState.isXTurn);
     const [isGameOver, setIsGameOver] = useState(defaultState.isGameOver);
 
+
+    const resetGame = () => {
+        setBoard([
+            ["", "", ""],
+            ["", "", ""],
+            ["", "", ""],
+        ]);//not using the default state since it's memory location value has been modified.
+        setIsXTurn(defaultState.isXTurn);
+        setIsGameOver(defaultState.isGameOver);
+        console.log("Resetting things", defaultState.isXTurn, defaultState.isGameOver);
+    }
 
 
     useEffect(() => {
@@ -57,14 +63,13 @@ export const StateContextProvider: React.FC = (props: stateProps) => {
     return (
         <StateContext.Provider
             value={{
-                name,
-                setName,
                 board,
                 setBoard,
                 isXTurn,
                 setIsXTurn,
                 isGameOver,
-                setIsGameOver
+                setIsGameOver,
+                resetGame
             }}>
             {props.children}
         </StateContext.Provider>

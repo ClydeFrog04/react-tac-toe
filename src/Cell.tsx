@@ -8,7 +8,7 @@ interface CellProps {
 }
 
 const Cell = (props: CellProps) => {
-    const {board, setBoard, isXTurn, setIsXTurn, isGameOver, setIsGameOver} = useContext(StateContext);
+    const {board, setBoard, isXTurn, setIsXTurn, isGameOver, setIsGameOver, setWinner} = useContext(StateContext);
     const localBoard = [...board];
     const x = props.position[0];
     const y = props.position[1];
@@ -49,8 +49,21 @@ const Cell = (props: CellProps) => {
             (localBoard[2][0] === localBoard[2][1] && localBoard[2][1] === localBoard[2][2] && localBoard[2][0] !== ""));
     };
 
+    const isBoardFull =  () => {
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                const cellVal = board[i][j];
+                if(cellVal === ""){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 
     const handleClick = (e: React.MouseEvent<HTMLSpanElement>) => {
+        if(isGameOver) return;
         if (checkValidPlacement()) {
             const player = isXTurn ? "X" : "O";
             console.log("setting move");
@@ -59,6 +72,11 @@ const Cell = (props: CellProps) => {
             if (isWinner()) {
                 setIsGameOver(true);
                 console.log(`${player} wins!`);
+                setWinner(`${player} wins!`);
+            }else if (isBoardFull()){
+                console.log("Game ends in a tie!");
+                setWinner("Game ends in a tie!");
+                setIsGameOver(true);
             }
             setIsXTurn(!isXTurn);
         }

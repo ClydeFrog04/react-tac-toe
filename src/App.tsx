@@ -4,7 +4,7 @@ import Board from "./Board";
 import {StateContext} from "./StateContext";
 
 function App() {
-    const {resetGame, isGameOver, board} = useContext(StateContext);
+    const {resetGame, isGameOver, board, winner} = useContext(StateContext);
 
     useEffect( () => {
         console.log("re-rendering game with board:", board);
@@ -18,7 +18,10 @@ function App() {
         <div className="App">
             <Board/>
             {isGameOver &&
-                <button className={"restart"} onClick={resetGame}>restart!</button>
+                <>
+                    <div className="winner">{winner}</div>
+                    <button className={"restart"} onClick={resetGame}>restart!</button>
+                </>
             }
             <button onClick={refresh}>Refresh</button>
         </div>

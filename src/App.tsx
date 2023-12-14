@@ -10,20 +10,11 @@ function App() {
         console.log("re-rendering game with board:", board);
     },[]);
 
-    const refresh =  () => {
-        window.location.reload();
-    }
+
 
     return (
         <div className="App">
             <Board/>
-            {isGameOver &&
-                <>
-                    <div className="winner">{winner}</div>
-                    <button className={"restart"} onClick={resetGame}>restart!</button>
-                </>
-            }
-            <button onClick={refresh}>Refresh</button>
         </div>
     );
 }

@@ -1,4 +1,30 @@
 .board {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    //position: absolute;
+    top: 50%;
+    left: 50%;
+    //transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    .cells{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .controls{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .diffContainer{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        vertical-align: center;
+    }
 }

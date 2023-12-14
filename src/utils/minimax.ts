@@ -30,15 +30,58 @@ export function findBestMove(board: string[][]) {
         }
     }
     return bestMove;
-//
-//        Position bestMove = null;
-//        for (int x = 0; x < 3; x++) {
-//            for (int y = 0; y < 3; y++) {
-//                if (board[x][y] == "0") bestMove = new Position(x, y);
-//            }
-//        }
-//
-//        return bestMove;
+}
+
+export function findDifficultyRatedMove(board: string[][], difficulty: {level: "easy"|"impossible"}) {
+    // console.log("board passed in was", JSON.stringify(board));
+    let bestVal = -1000;
+    const bestMove:{x: number, y: number} = {x: 0, y:0};//new Position(0, 0);
+
+    if(difficulty.level === "impossible") {
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+
+                if (board[i][j] === blankSpace) {
+                    board[i][j] = "O";
+
+                    const moveVal = minimax(board, 0, false);
+                    board[i][j] = blankSpace;
+
+                    if (moveVal > bestVal) {
+                        console.log("Reseting best cal");
+                        // bestMove.setPos(i, j);
+                        bestMove.x = i;
+                        bestMove.y = j;
+                        bestVal = moveVal;
+                    }
+                }
+            }
+        }
+    } else {
+        const rand = getRandomOpenPosition(board);
+        bestMove.x = rand.x;
+        bestMove.y = rand.y;
+    }
+    return bestMove;
+}
+
+function getRandomOpenPosition(board: string[][]){
+    const openSpots:{x: number, y: number}[] = [];
+
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            const cell = board[i][j];
+            if(cell === blankSpace){
+                openSpots.push({x: i, y: j});
+            }
+        }
+    }
+
+    const limit = openSpots.length - 1;
+    //Math.floor(Math.random() * (max - min + 1) + min)
+    const ind = Math.floor(Math.random() * (limit + 1));
+    console.log("rand picked was", ind, openSpots[ind]);
+    return openSpots[ind];
 }
 
 function evaluateScore(board: string[][]){
@@ -92,6 +135,7 @@ function isMovesLeft(board: string[][]) {
 
 function minimax(board: string[][], depth: number, isMax: boolean){//probably need our board passed in too!
     const score = evaluateScore(board);
+    // console.log("yes");
     if(score === 10 || score === -10) return score;
     if(!isMovesLeft(board)) return 0;
     // if(score === -10) return score;

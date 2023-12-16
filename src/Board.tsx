@@ -117,7 +117,7 @@ const Board = (props: BoardProps) => {
                 <button onClick={refresh}>Refresh</button>
                 <div className="diffContainer">
                     <label htmlFor="difficulty">impossible:</label>
-                    <input id={"difficulty"} type="checkbox" checked={impossible} onClick={() => {
+                    <input id={"difficulty"} type="checkbox" checked={impossible} onChange={() => {
                         setImpossible((impossible) => {
                                 return !impossible;
                             }

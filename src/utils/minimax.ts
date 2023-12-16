@@ -59,8 +59,10 @@ export function findDifficultyRatedMove(board: string[][], difficulty: {level: "
         }
     } else {
         const rand = getRandomOpenPosition(board);
-        bestMove.x = rand.x;
-        bestMove.y = rand.y;
+        if(rand !== undefined){
+            bestMove.x = rand.x;
+            bestMove.y = rand.y;
+        }
     }
     return bestMove;
 }
